@@ -1,0 +1,49 @@
+# [shell]
+# program = "/usr/bin/tmux"
+# args = []
+
+[env]
+TERM = "xterm-256color"
+
+[window]
+startup_mode = "Maximized"
+dynamic_padding = true
+dimensions.columns = 480
+dimensions.lines = 240
+
+[colors]
+draw_bold_text_with_bright_colors = true
+
+[font]
+normal.family = "Inconsolata"
+bold.family = "Inconsolata"
+italic.family = "Inconsolata"
+bold_italic.family = "Inconsolata"
+size = 11.0
+
+[cursor]
+style = { shape = "Beam", blinking = "On" }
+
+[mouse]
+bindings = [
+  { mouse = 1, mods = "Control", action = "Open" },
+  { mouse = 3, mods = "Control", action = "Paste" }
+]
+
+[[hints.enabled]]
+command = "xdg-open"  # On Linux/BSD
+# command = "open" # On macOS
+# command = { program = "cmd", args = [ "/c", "start", "" ] } # On Windows
+hyperlinks = true
+post_processing = true
+persist = false
+action = "Copy"
+mouse = { mods = "Control", enabled = true }
+binding = { key = "U", mods = "Control | Shift" }
+regex = "(ipfs:|ipns:|magnet:|mailto:|gemini://|gopher://|https://|http://|news:|file:|git://|ssh:|ftp://)[^\u0000-\u001F\u007F-\u009F<>\"\\s{-}\\^⟨⟩`]+"
+
+[keyboard]
+bindings = []
+
+[general]
+import = ["~/.config/alacritty/tokyo-night.toml"]
