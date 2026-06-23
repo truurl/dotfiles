@@ -2,92 +2,67 @@
 /* Catppuccin Mocha */
 
 * {
-	font-family: "JetBrainsMono Nerd Font";
-	font-weight: bold;
-	min-height: 0;
-	/* set font-size to 100% if font scaling is set to 1.00 using nwg-look */
-	font-size: 100%;
-	font-feature-settings: '"zero", "ss01", "ss02", "ss03", "ss04", "ss05", "cv31"';
+    font-family: "JetBrainsMono Nerd Font";
+    font-weight: bold;
+    border: none;
+    border-radius: 0;
+    min-height: 0;
+    /* set font-size to 100% if font scaling is set to 1.00 using nwg-look */
+    margin: 0;
+    padding: 0;
+    font-size: 100%;
+    font-feature-settings: '"zero", "ss01", "ss02", "ss03", "ss04", "ss05", "cv31"';
 }
 
-@import "mocha.css";
+@import "colors.css";
 
-window#waybar {
-  	transition-property: background-color;
-  	transition-duration: 0.5s;
-  	background: transparent;
-  	border-radius: 8px;
+#waybar {
+    transition-property: background-color;
+    transition-duration: 0.5s;
+    background: transparent;
+    color: @foreground;
 }
 
-window#waybar.hidden {
-  	opacity: 0.2;
-}
-
-window#waybar.empty,
-window#waybar.empty #window {
+#waybar.empty,
+#waybar.empty #window {
     background-color: transparent;
     padding: 0px;
     border: 0px;
 }
 
-#taskbar button,
-#workspaces button {
-	color: @overlay1;
-    box-shadow: none;
-	text-shadow: none;
-    padding: 0px;
-    border-radius: 9px;
-    padding-left: 4px;
-    padding-right: 4px;
-    animation: gradient_f 20s ease-in infinite;
-    transition: all 0.5s cubic-bezier(.55,-0.68,.48,1.682);
-}
-
-#taskbar button:hover,
-#workspaces button:hover {
-	border-radius: 10px;
-	color: @peach;
-	background-color: @surface0;
- 	padding-left: 2px;
-    padding-right: 2px;
-    animation: gradient_f 20s ease-in infinite;
-    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
-}
-
-#workspaces button.persistent {
-	color: @surface1;
-	border-radius: 10px;
-}
-
-#taskbar button.active,
-#workspaces button.active {
-	color: @mauve;
-  	border-radius: 10px;
-    padding-left: 8px;
-    padding-right: 8px;
-    animation: gradient_f 20s ease-in infinite;
-    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
-}
-
-#workspaces button.urgent {
-	color: @red;
- 	border-radius: 0px;
-}
-
 /* This section can be use if you want to separate waybar modules */
-.modules-left, .modules-center, .modules-right {
-	background: @theme_base_color; 
- 	border: 0.5px solid @overlay0;
-	padding-top: 2px;
-	padding-bottom: 2px;
-	padding-right: 4px;
-	padding-left: 4px;
-	border-radius: 10px;
-} 
+.modules-left,
+.modules-center,
+.modules-right {
+    background: @main-bg;
+    border: 1px solid @outline;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-right: 4px;
+    padding-left: 4px;
+    border-radius: 10px;
+}
 
-.modules-left, .modules-right {
-  	border: 1px solid @blue;
-} 
+button {
+    border-radius: 16px;
+    min-width: 16px;
+    padding: 0 10px;
+}
+
+button:hover {
+    background-color: @hover-bg;
+    color: @hover-fg;
+}
+
+tooltip {
+    border: 2px solid @main-br;
+    border-radius: 10px;
+    background-color: @main-bg;
+}
+
+tooltip>box {
+    padding: 0 6px;
+}
 
 #bluetooth,
 #clock,
@@ -97,11 +72,7 @@ window#waybar.empty #window {
 #keyboard-state,
 #memory,
 #mode,
-#mpris,
 #network,
-#power-profiles-daemon,
-#pulseaudio,
-#pulseaudio-slider,
 #taskbar button,
 #taskbar,
 #temperature,
@@ -109,10 +80,7 @@ window#waybar.empty #window {
 #window,
 #wireplumber,
 #wireplumber-2,
-#wireplumber-source.
-#workspaces,
-#custom-cycle_wall,
-#custom-file_manager,
+#wireplumber-source. #workspaces,
 #custom-gpu,
 #custom-gpu-temperature,
 #custom-keybinds,
@@ -124,177 +92,117 @@ window#waybar.empty #window {
 #custom-menu,
 #custom-notifications,
 #custom-playerctl,
-#custom-power_vertical,
-#custom-power,
 #custom-settings,
 #custom-spotify,
 #custom-swaync,
-#custom-tty,
-#custom-updater,
-#custom-weather,
-#custom-weather.clearNight,
-#custom-weather.cloudyFoggyDay,
-#custom-weather.cloudyFoggyNight,
-#custom-weather.default, 
-#custom-weather.rainyDay,
-#custom-weather.rainyNight,
-#custom-weather.severe,
-#custom-weather.showyIcyDay,
-#custom-weather.snowyIcyNight,
-#custom-weather.sunnyDay {
-	padding-top: 4px;
-	padding-bottom: 4px;
-	padding-right: 8px;
-	padding-left: 8px;
+#custom-weather {
+    padding: 2px 5px;
+    color: @text;
 }
-/*-----Indicators----*/
-#custom-hypridle.notactive,
-#idle_inhibitor.activated {
-	color: #39FF14;
-}
+
 
 #bluetooth,
 #backlight {
-  color: @blue;
-}
-
-#battery {
-  color: @green;
+    color: @blue;
 }
 
 @keyframes blink {
-  to {
-    color: @surface0;
-  }
+    to {
+        color: @surface0;
+    }
 }
 
-#clock {
-  color: @yellow;
+#tray>.passive {
+    -gtk-icon-effect: dim;
 }
 
-#cpu {
-  color: @green;
-}
-
-#custom-gpu {
-	color: @yellow;
-}
-
-#custom-keyboard,
-#memory {
-  color: @sky;
-}
-
-#disk {
-  color: @sapphire;
-}
-
-#temperature {
-  color: @green;
-}
-
-#custom-gpu-temperature {
-	color: @yellow;
-}
-
-#temperature.critical {
-  background-color: @red;
-}
-
-#tray > .passive {
-  -gtk-icon-effect: dim;
-}
-#tray > .needs-attention {
-  -gtk-icon-effect: highlight;
-}
-
-#language {
-  color: @flamingo;
-}
-
-#keyboard-state {
-  color: @text;
+#tray>.needs-attention {
+    -gtk-icon-effect: highlight;
 }
 
 #keyboard-state label.locked {
-  color: #f7768e;
-}
-
-#custom-cava_mviz {
-	color: @pink;
-}
-
-#custom-menu {
-  color: @rosewater;
-}
-
-#custom-power {
-  color: @red;
-}
-
-#custom-updater {
-  color: @red;
-}
-
-#custom-light_dark {
-  color: @blue;
-}
-
-#custom-weather {
-  color: @lavender;
-}
-
-#custom-lock {
-  color: @maroon;
-}
-
-#pulseaudio {
-  color: @sapphire;
-}
-
-#pulseaudio.bluetooth {
-  color: @pink;
-}
-#pulseaudio.muted {
-  color: @red;
-}
-
-#window {
-  color: @mauve;
-}
-
-#mpris {
-  color:@lavender;
+    color: @mauve;
 }
 
 #network {
-  color: @teal;
+    color: @teal;
 }
+
 #network.disconnected,
 #network.disabled {
-  background-color: @surface0;
-  color: @text;
+    background-color: @surface0;
+    color: @text;
 }
 
-#backlight-slider slider,
-#pulseaudio-slider slider {
-	min-width: 0px;
-	min-height: 0px;
-	opacity: 0;
-	background-image: none;
-	border: none;
-	box-shadow: none;
+#custom-user:hover,
+#idle_inhibitor:hover,
+#clock.date:hover,
+#network:hover,
+#bluetooth:hover,
+#wireplumber:hover {
+    color: @hover-fg;
 }
 
-#backlight-slider trough,
-#pulseaudio-slider trough {
-	min-width: 80px;
-	min-height: 5px;
-	border-radius: 5px;
+/* Inactive states */
+#idle_inhibitor.deactivated,
+#wireplumber.muted {
+    color: @hover-fg;
 }
 
-#backlight-slider highlight,
-#pulseaudio-slider highlight {
-	min-height: 10px;
-	border-radius: 5px;
+#memory.warning,
+#cpu.warning,
+#battery.warning {
+    color: @warning;
+}
+
+#temperature.critical,
+#memory.critical,
+#cpu.critical,
+#battery.critical {
+    color: @critical;
+    background-color: @yellow;
+}
+
+#battery.charging {
+    color: @charging;
+}
+
+#workspaces button {
+    box-shadow: none;
+    text-shadow: none;
+    padding: 0px;
+    border-radius: 9px;
+    padding-left: 4px;
+    padding-right: 4px;
+    animation: gradient_f 20s ease-in infinite;
+    transition: all 0.5s cubic-bezier(.55, -0.68, .48, 1.682);
+}
+
+#workspaces button:hover {
+    border-radius: 10px;
+    color: @hover-fg;
+    background-color: @hover-bg;
+    padding-left: 2px;
+    padding-right: 2px;
+    animation: gradient_f 20s ease-in infinite;
+    transition: all 0.3s cubic-bezier(.55, -0.68, .48, 1.682);
+}
+
+#workspaces button.persistent {
+    color: @surface1;
+    border-radius: 10px;
+}
+
+#workspaces button.active {
+    color: @accent;
+    border-radius: 10px;
+    padding-left: 8px;
+    padding-right: 8px;
+    animation: gradient_f 20s ease-in infinite;
+    transition: all 0.3s cubic-bezier(.55, -0.68, .48, 1.682);
+}
+
+#workspaces button.urgent {
+    color: @critical;
+    border-radius: 0px;
 }
